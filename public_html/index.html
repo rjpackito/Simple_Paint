@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Пример</title>
+        <meta charset='utf-8' />
+    </head>
+    <body>
+        <canvas id='example'>Обновите браузер</canvas>
+        <script>
+            
+            var paint = document.getElementById("example"),
+                ctx     = paint.getContext('2d');
+            paint.width  = 1300;
+            paint.height = 700;
+            ctx.lineWidth=30;
+            ctx.strokeStyle="rgb(0,0,0)";
+            ctx.strokeRect(400, 20 , 400, 500); var flag;
+           ctx.lineWidth=1;             ctx.strokeStyle="rgb(0,0,0)";
+
+            paint.addEventListener("mousedown", function(e){ 
+                   if(e.offsetX>400 && e.offsetY>20 && e.offsetX<800 && e.offsetY<520)
+                       flag=1; 
+                ctx.beginPath(); 
+                ctx.moveTo(e.offsetX, e.offsetY); var path=1; 
+                             
+                paint.addEventListener("mousemove", function(event){
+                    if(event.offsetX<422 || event.offsetY<42 || event.offsetX>781 || event.offsetY>501) ctx.moveTo(event.offsetX,event.offsetY);
+                    if(event.offsetX>422 && event.offsetY>42 && event.offsetX<781 && event.offsetY<501 && flag==1){ 
+                                                ctx.lineTo(event.offsetX, event.offsetY);ctx.stroke();
+                                            }     
+            });
+            });
+            paint.addEventListener("mouseup",function(e){ flag=0;});
+            paint.addEventListener("mouseout", function(e){ flag=0;});
+            paint.addEventListener("mousein", function(e){flag=1;});
+              ctx.fillStyle="rgb(0,0,255)";
+            ctx.fillRect(350,100,20,20);
+              ctx.fillStyle="rgb(0,255,0)";
+                        ctx.fillRect(350,125,20,20);
+  ctx.fillStyle="rgb(255,0,0)";
+            ctx.fillRect(350,150,20,20);
+              ctx.fillStyle="rgb(255,255,0)";
+            ctx.fillRect(350,175,20,20);
+            paint.addEventListener("click", function(e){   console.log(e.offsetX + " " + e.offsetY);
+                     if(e.offsetX>=330 && e.offsetY>=100 && e.offsetX<=370 && e.offsetY<=120) ctx.strokeStyle="rgb(0,0,255)"; 
+                else if(e.offsetX>=330 && e.offsetY>=125 && e.offsetX<=370 && e.offsetY<=145) ctx.strokeStyle="rgb(0,255,0)"; 
+                else if(e.offsetX>=330 && e.offsetY>=150 && e.offsetX<=370 && e.offsetY<=170) ctx.strokeStyle="rgb(255,0,0)";
+                else if(e.offsetX>=330 && e.offsetY>=175 && e.offsetX<=370 && e.offsetY<=195) ctx.strokeStyle="rgb(255,255,0)";});
+
+        </script>
+    </body>
+</html>
